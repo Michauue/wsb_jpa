@@ -1,10 +1,7 @@
 package com.capgemini.wsb.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "ADDRESS")
@@ -13,6 +10,22 @@ public class AddressEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	//relacja dwustronna
+	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+	private DoctorEntity doctor;
+
+	//relacja dwustronna
+	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+	private PatientEntity patient;
+
+	// relacja jednostronna od rodzica
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY
+	)
+	@JoinColumn(name = "VISIT_ID")
+	private Collection<MedicalTreatmentEntity> medicalTreatmentEntities;
 
 	private String city;
 
