@@ -12,4 +12,6 @@ public interface PatientDao extends Dao<PatientEntity, Long>
     List<PatientEntity> findPremiumPatients(Boolean isPremium);
 
     List<PatientEntity> findPatientWhenCountVisitsIs(Long count);
+
+    List<PatientEntity> findAllVisitsByPatientId(Long id);
 }

@@ -31,6 +31,13 @@ public class PatientDaoImpl extends AbstractDao<PatientEntity, Long> implements 
                 "HAVING COUNT(visit.ID) > :visitCount", PatientEntity.class).setParameter("visitCount", visitCount).getResultList();
     }
 
-    // Pozostale zapytania znajduja sie w VisitDaoImpl
+    @Override
+    public List<PatientEntity> findAllVisitsByPatientId(Long id) {
+        return entityManager.createQuery("select pat.ID pat.FIRST_NAME, pat.LAST_NAME, visit.* from PatientEntity pat " +
+                "join pat.visitEntities visit " +
+                "WHERE pat.ID = :id", PatientEntity.class).setParameter("id", id).getResultList();
+    }
+
+    // Pozostale przygotowane zapytania znajduja sie w VisitDaoImpl
 
 }
