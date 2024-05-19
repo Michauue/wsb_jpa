@@ -24,7 +24,7 @@ VALUES
 
 INSERT INTO DOCTOR (FIRST_NAME, LAST_NAME, TELEPHONE_NUMBER, EMAIL, DOCTOR_NUMBER, ADDRESS_ID, SPECIALIZATION)
 VALUES
-    ('John', 'Doe', '123456789', 'john.doe@example.com', 'DOC123', 1, 'GENERAL_PRACTITIONER'),
+    ('John', 'Doe', '123456789', 'john.doe@example.com', 'DOC123', 1, 'GP'),
     ('Jane', 'Smith', '987654321', 'jane.smith@example.com', 'DOC456', 2, 'CARDIOLOGIST'),
     ('Michael', 'Johnson', '555123456', 'michael.johnson@example.com', 'DOC789', 3, 'PEDIATRICIAN'),
     ('Sarah', 'Brown', '999888777', 'sarah.brown@example.com', 'DOC101', 4, 'DERMATOLOGIST'),
@@ -36,18 +36,18 @@ VALUES
     ('Ava', 'Garcia', '111222333', 'ava.garcia@example.com', 'DOC707', 10, 'ENDOCRINOLOGIST');
 
 
-INSERT INTO PATIENT (FIRST_NAME, LAST_NAME, TELEPHONE_NUMBER, EMAIL, PATIENT_NUMBER, ADDRESS_ID, DATE_OF_BIRTH)
+INSERT INTO PATIENT (FIRST_NAME, LAST_NAME, TELEPHONE_NUMBER, EMAIL, PATIENT_NUMBER, ADDRESS_ID, DATE_OF_BIRTH, IS_PREMIUM_PATIENT)
 VALUES
-    ('Alice', 'Smith', '111111111', 'alice.smith@example.com', 'PAT123', 11, '1990-05-01'),
-    ('Bob', 'Johnson', '222222222', 'bob.johnson@example.com', 'PAT456', 12, '1985-08-15'),
-    ('Eva', 'White', '333333333', 'eva.white@example.com', 'PAT789', 13, '1976-12-30'),
-    ('Liam', 'Johnson', '444444444', 'liam.johnson@example.com', 'PAT101', 14, '2000-02-20'),
-    ('Sophia', 'Taylor', '555555555', 'sophia.taylor@example.com', 'PAT202', 15, '1995-04-10'),
-    ('Mia', 'Martinez', '666666666', 'mia.martinez@example.com', 'PAT303', 16, '1988-07-05'),
-    ('Oliver', 'Brown', '777777777', 'oliver.brown@example.com', 'PAT404', 17, '1993-09-25'),
-    ('Noah', 'Lee', '888888888', 'noah.lee@example.com', 'PAT505', 18, '1979-11-15'),
-    ('Emma', 'Garcia', '999999999', 'emma.garcia@example.com', 'PAT606', 19, '1983-03-05'),
-    ('Ava', 'Wilson', '123123123', 'ava.wilson@example.com', 'PAT707', 20, '1998-06-12');
+    ('Alice', 'Smith', '111111111', 'alice.smith@example.com', 'PAT123', 11, '1990-05-01', true),
+    ('Bob', 'Johnson', '222222222', 'bob.johnson@example.com', 'PAT456', 12, '1985-08-15', false),
+    ('Eva', 'White', '333333333', 'eva.white@example.com', 'PAT789', 13, '1976-12-30', true),
+    ('Liam', 'Johnson', '444444444', 'liam.johnson@example.com', 'PAT101', 14, '2000-02-20', false),
+    ('Sophia', 'Taylor', '555555555', 'sophia.taylor@example.com', 'PAT202', 15, '1995-04-10', true),
+    ('Mia', 'Martinez', '666666666', 'mia.martinez@example.com', 'PAT303', 16, '1988-07-05', false),
+    ('Oliver', 'Brown', '777777777', 'oliver.brown@example.com', 'PAT404', 17, '1993-09-25', true),
+    ('Noah', 'Lee', '888888888', 'noah.lee@example.com', 'PAT505', 18, '1979-11-15', false),
+    ('Emma', 'Garcia', '999999999', 'emma.garcia@example.com', 'PAT606', 19, '1983-03-05', true),
+    ('Ava', 'Wilson', '123123123', 'ava.wilson@example.com', 'PAT707', 20, '1998-06-12', false);
 
 
 INSERT INTO VISIT (DESCRIPTION, TIME, DOCTOR_ID, PATIENT_ID)
@@ -75,3 +75,23 @@ VALUES
     ('Medication adjustment', 'MEDICATION', 8),
     ('Nutritional counseling', 'CONSULTATION', 9),
     ('Physiotherapy exercises', 'THERAPY', 10);
+
+
+--LAB 3
+--1. Znajdz pacjentow po nazwisku
+
+SELECT * FROM PATIENT
+WHERE LAST_NAME = 'Johnson';
+
+--2. Znajdz wszystkie wizyty pacjenta po jego ID
+
+SELECT v.*, p.*
+FROM VISIT v
+JOIN PATIENT p ON v.PATIENT_ID = p.ID
+WHERE p.ID = 9;
+
+--3. znajdz pacjentow ktorzy mieli wiecej niz X wizyt (X jest parametrem wejsciowym)
+
+
+
+--4. Znajdz pacjentow po dodanym przez Ciebie polu - nie wyszukuj wprost po wartosci, uzyj zapytania typu wieksze/mniejsze/pozniej/wczesniej/zawiera, w zaleznosci od wybranego typu zmiennej.

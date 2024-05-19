@@ -27,12 +27,15 @@ public class AddressEntity {
 	@JoinColumn(name = "VISIT_ID")
 	private Collection<MedicalTreatmentEntity> medicalTreatmentEntities;
 
+	@Column(nullable = false)
 	private String city;
 
+	@Column(nullable = false)
 	private String addressLine1;
 
 	private String addressLine2;
 
+	@Column(nullable = false)
 	private String postalCode;
 
 	public Long getId() {
@@ -41,6 +44,30 @@ public class AddressEntity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public Collection<MedicalTreatmentEntity> getMedicalTreatmentEntities() {
+		return medicalTreatmentEntities;
+	}
+
+	public void setMedicalTreatmentEntities(Collection<MedicalTreatmentEntity> medicalTreatmentEntities) {
+		this.medicalTreatmentEntities = medicalTreatmentEntities;
 	}
 
 	public String getCity() {

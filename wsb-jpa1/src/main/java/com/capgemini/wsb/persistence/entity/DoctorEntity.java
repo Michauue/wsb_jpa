@@ -33,6 +33,22 @@ public class DoctorEntity {
 	@JoinColumn(name = "ADDRESS_ID", referencedColumnName = "id")
 	private AddressEntity address;
 
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
+	}
+
+	public Collection<VisitEntity> getVisitEntities() {
+		return visitEntities;
+	}
+
+	public void setVisitEntities(Collection<VisitEntity> visitEntities) {
+		this.visitEntities = visitEntities;
+	}
+
 	// relacja jednostronna od rodzica
 	@OneToMany(
 			cascade = CascadeType.ALL,

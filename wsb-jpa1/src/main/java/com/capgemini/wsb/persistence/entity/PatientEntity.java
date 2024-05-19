@@ -26,7 +26,26 @@ public class PatientEntity {
 	private String email;
 
 	@Column(nullable = false)
+	private boolean isPremiumPatient;
+
+	@Column(nullable = false)
 	private String patientNumber;
+
+	public AddressEntity getAddress() {
+		return address;
+	}
+
+	public void setAddress(AddressEntity address) {
+		this.address = address;
+	}
+
+	public Collection<VisitEntity> getVisitEntities() {
+		return visitEntities;
+	}
+
+	public void setVisitEntities(Collection<VisitEntity> visitEntities) {
+		this.visitEntities = visitEntities;
+	}
 
 	//relacja dwustronna
 	@OneToOne
@@ -83,6 +102,12 @@ public class PatientEntity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public boolean getIsPremiumPatient() {
+		return isPremiumPatient;
+	}
+
+	public void setIsPremiumPatient(Boolean isPremiumPatient){ this.isPremiumPatient = isPremiumPatient;}
 
 	public String getPatientNumber() {
 		return patientNumber;

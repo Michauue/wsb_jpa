@@ -18,6 +18,30 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
+	@ManyToOne
+	@JoinColumn(name = "DOCTOR_ID", nullable = false)
+	private DoctorEntity doctor;
+
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "PATIENT_ID", nullable = false)
+	private PatientEntity patient;
+
 	public Long getId() {
 		return id;
 	}
@@ -42,4 +66,7 @@ public class VisitEntity {
 		this.time = time;
 	}
 
+//	public Collection<DoctorEntity> getDoctorEntities() {
+//		return doctorEntities;
+//	}
 }
